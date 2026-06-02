@@ -1,73 +1,39 @@
-# React + TypeScript + Vite
+CSAnalyzer – Dokumentacja Frontendowa
+Opis projektu
+Frontend dla aplikacji CSAnalyzer, służącej do analizy statystyk graczy (Steam i FACEIT). Zbudowany w oparciu o architekturę komponentową, zintegrowany z WCF REST API.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Stos technologiczny
 
-Currently, two official plugins are available:
+Framework: React (Vite)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Język: TypeScript
 
-## React Compiler
+Style: Tailwind CSS
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Routing: React Router (react-router-dom)
 
-## Expanding the ESLint configuration
+Ikony: Lucide React
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Struktura plików
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+src/components/ – izolowane komponenty interfejsu użytkownika (SteamCard.tsx, FaceitCard.tsx).
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+src/hooks/ – logika biznesowa i zapytania do API (useProfile.ts). Obsługa stanu ładowania i błędów.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+src/pages/ – główne widoki aplikacji (Home.tsx, Profile.tsx).
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+src/types.ts – globalne definicje typów i interfejsów (głównie ProfileData odzwierciedlający odpowiedź z backendu).
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Instalacja i uruchomienie
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Instalacja zależności:
+
+Bash
+npm install
+Uruchomienie serwera deweloperskiego:
+
+Bash
+npm run dev
+Komunikacja z API
+Aplikacja domyślnie komunikuje się z lokalnym backendem. Endpoint pobierający dane profilu:
+GET http://localhost:59050/CSService.svc/profile/{steamId}
