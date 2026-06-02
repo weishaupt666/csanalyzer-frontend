@@ -36,4 +36,4 @@ Bash
 npm run dev
 Komunikacja z API
 Aplikacja domyślnie komunikuje się z lokalnym backendem. Endpoint pobierający dane profilu:
-GET http://localhost:59050/CSService.svc/profile/{steamId}
+GET http://localhost:.../CSService.svc/profile/{steamId}
